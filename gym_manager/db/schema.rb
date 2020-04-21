@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_112459) do
+ActiveRecord::Schema.define(version: 2020_04_21_185805) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "locker_id"
-    t.integer "membership_id"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "lockers", force: :cascade do |t|
@@ -46,4 +46,11 @@ ActiveRecord::Schema.define(version: 2020_04_21_112459) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "cards", "lockers"
+  add_foreign_key "cards", "users"
+  add_foreign_key "lockers", "cards"
+  add_foreign_key "memberships", "cards"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "users", "cards"
+  add_foreign_key "users", "memberships"
 end
