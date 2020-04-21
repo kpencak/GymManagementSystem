@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locker_id: 1
+  membership_id: 1
+  status: MyString
+
+two:
+  locker_id: 1
+  membership_id: 1
+  status: MyString
