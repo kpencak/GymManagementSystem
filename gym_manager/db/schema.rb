@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_185805) do
+ActiveRecord::Schema.define(version: 2020_04_22_132031) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "locker_id"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2020_04_21_185805) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.integer "card_id"
+    t.datetime "start_reservation_time"
+    t.datetime "end_reservation_time"
+    t.boolean "is_free"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "lockers", force: :cascade do |t|
