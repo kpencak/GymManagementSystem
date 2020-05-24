@@ -2,42 +2,59 @@ module Api
     module V1
         class MembershipsController < ApplicationController
             def index
-                memberships = Membership.order('id DESC');
-                render json: {status: 'SUCCESS', message: 'Loaded memberships', data:memberships}, status: :ok
+                respond_to do |format|
+                    format.html
+                    memberships = Membership.order('id DESC');
+
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded memberships', data:memberships}, status: :ok}
+                end
             end
 
             def show
-                membership = Membership.find(params[:id]);
-                render json: {status: 'SUCCESS', message: 'Loaded membership', data:membership}, status: :ok
+                respond_to do |format|
+                    format.html
+                    membership = Membership.find(params[:id]);
+                
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded membership', data:membership}, status: :ok}
+                end
             end
 
             def create
-                membership = Membership.new(membership_params)
+                respond_to do |format|
+                    format.html
+                    membership = Membership.new(membership_params)
 
-                if membership.save
-                    render json: {status: 'SUCCESS', message: 'Added new membership', data:membership}, status: :ok
-                else
-                    render json: {status: 'ERROR', message: 'Membership not saved', data:membership.errors}, status: :unprocessable_entity
+                    if membership.save
+                        format.json {render json: {status: 'SUCCESS', message: 'Added new membership', data:membership}, status: :ok}
+                    else
+                        format.json {render json: {status: 'ERROR', message: 'Membership not saved', data:membership.errors}, status: :unprocessable_entity}
+                    end
                 end
             end
 
             def destroy
-                membership = Membership.find(params[:id]);
+                respond_to do |format|
+                    format.html
+                    membership = Membership.find(params[:id]);
 
-                if membership.destroy
-                    render json: {status: 'SUCCESS', message: 'Deleted membership', data:membership}, status: :ok
-                else
-                    render json: {status: 'ERROR', message: 'Membership not deleted', data:membership.errors}, status: :forbidden
+                    if membership.destroy
+                        format.json {render json: {status: 'SUCCESS', message: 'Deleted membership', data:membership}, status: :ok}
+                    else
+                        format.json {render json: {status: 'ERROR', message: 'Membership not deleted', data:membership.errors}, status: :forbidden}
+                    end
                 end
             end
 
             def update
-                membership = Membership.find(params[:id]);
+                respond_to do |format|
+                    format.html
+                    membership = Membership.find(params[:id]);
 
-                if Membership.update_attributes(membership_params)
-                    render json: {status: 'SUCCESS', message: 'Updated membership info', data:membership}, status: :ok
-                else
-                    render json: {status: 'ERROR', message: 'Membership not updated', data:membership.errors}, status: :unprocessable_entity
+                    if Membership.update_attributes(membership_params)
+                        format.json {render json: {status: 'SUCCESS', message: 'Updated membership info', data:membership}, status: :ok}
+                    else
+                        foramt.json {render json: {status: 'ERROR', message: 'Membership not updated', data:membership.errors}, status: :unprocessable_entity}
+                    end
                 end
             end
 

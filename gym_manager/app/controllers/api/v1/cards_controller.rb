@@ -2,42 +2,59 @@ module Api
     module V1
         class CardsController < ApplicationController
             def index
-                cards = Card.order('id DESC');
-                render json: {status: 'SUCCESS', message: 'Loaded cards', data:cards}, status: :ok
+                respond_to do |format|
+                    format.html
+                    cards = Card.order('id DESC');
+                
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded cards', data:cards}, status: :ok}
+                end
             end
 
             def show
-                card = Card.find(params[:id]);
-                render json: {status: 'SUCCESS', message: 'Loaded card', data:card}, status: :ok
+                respond_to do |format|
+                    format.html
+                    card = Card.find(params[:id]);
+                
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded card', data:card}, status: :ok}
+                end
             end
 
             def create
-                card = Card.new(card_params)
+                respond_to do |format|
+                    format.html
+                    card = Card.new(card_params)
 
-                if card.save
-                    render json: {status: 'SUCCESS', message: 'Saved card', data:card}, status: :ok
-                else
-                    render json: {status: 'ERROR', message: 'Card not saved', data:card.errors}, status: :unprocessable_entity
+                    if card.save
+                        format.json {render json: {status: 'SUCCESS', message: 'Saved card', data:card}, status: :ok}
+                    else
+                        format.json {render json: {status: 'ERROR', message: 'Card not saved', data:card.errors}, status: :unprocessable_entity}
+                    end
                 end
             end
 
             def destroy
-                card = Card.find(params[:id]);
+                respond_to do |format|
+                    format.html
+                    card = Card.find(params[:id]);
 
-                if card.destroy && card.locker_id == null
-                    render json: {status: 'SUCCESS', message: 'Deleted card', data:card}, status: :ok
-                else
-                    render json: {status: 'ERROR', message: 'Card not deleted', data:card.errors}, status: :forbidden
+                    if card.destroy && card.locker_id == null
+                        format.json {render json: {status: 'SUCCESS', message: 'Deleted card', data:card}, status: :ok}
+                    else
+                        format.json {render json: {status: 'ERROR', message: 'Card not deleted', data:card.errors}, status: :forbidden}
+                    end
                 end
             end
 
             def update
-                card = Card.find(params[:id]);
+                respond_to do |format|
+                    format.html
+                    card = Card.find(params[:id]);
 
-                if card.update_attributes(card_params)
-                    render json: {status: 'SUCCESS', message: 'Updated card', data:card}, status: :ok
-                else
-                    render json: {status: 'ERROR', message: 'Card not updated', data:card.errors}, status: :unprocessable_entity
+                    if card.update_attributes(card_params)
+                        format.json {render json: {status: 'SUCCESS', message: 'Updated card', data:card}, status: :ok}
+                    else
+                        format.json {render json: {status: 'ERROR', message: 'Card not updated', data:card.errors}, status: :unprocessable_entity}
+                    end
                 end
             end
 
