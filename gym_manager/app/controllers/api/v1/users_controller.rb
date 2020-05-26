@@ -4,7 +4,7 @@ module Api
             def index
                 respond_to do |format|
                     format.html
-                    users = User.order('surname DESC');
+                    @users = User.all.order('created_at DESC');
 
                     format.json { render json: {status: 'SUCCESS', message: 'Loaded users', data:users}, status: :ok}
                 end
@@ -13,21 +13,27 @@ module Api
             def show
                 respond_to do |format|
                     format.html
-                    user = User.find(params[:id]);
+                    @user = User.find(params[:id]);
                 
                     format.json {render json: {status: 'SUCCESS', message: 'Loaded user', data:user}, status: :ok}
                 end
             end
 
+            def new
+                @user = User.new 
+            end
+
             def create
                 respond_to do |format|
                     format.html
-                    user = User.new(user_params)
+                    @user = User.new(user_params)
 
-                    if user.save
+                    if @user.save 
                         format.json {render json: {status: 'SUCCESS', message: 'Saved user', data:user}, status: :ok}
+                        redirect_to api_v1_users_path
                     else
                         format.json {render json: {status: 'ERROR', message: 'User not saved', data:user.errors}, status: :unprocessable_entity}
+                        render 'new'
                     end
                 end
             end
@@ -62,7 +68,7 @@ module Api
             private
 
             def user_params
-                params.permit(:surname, :name, :sex)
+                params.require(:user).permit(:surname, :name, :sex)
             end
         end
     end

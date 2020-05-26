@@ -8,27 +8,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>USERS LIST</title>
+    <title>User no. <%= @user.id %></title>
   </head>
   <body>
     <div class="container-sm">
-      <h1>USERS LIST</h1>
-      <% @users.each do |user| %>
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"> <%= link_to user.surname, api_v1_user_path(user) %></p>
-              </div>
-            </div>
-            <div class="content">
-              <%= user.name %>
-              <%= user.card_id %>
-              <%= user.membership_id %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <h1>User no. <%= @user.id %></h1>
+
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
