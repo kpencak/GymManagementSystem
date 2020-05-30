@@ -8,28 +8,25 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>USERS LIST</title>
+    <title>New card</title>
   </head>
   <body>
     <div class="container-sm">
-      <h1>USERS LIST</h1>
-      <% @users.each do |user| %>
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <h4 class="title is-4"><%= link_to user.surname, api_v1_user_path(user) %></h4>
-              </div>
-            </div>
-            <div class="content">
-              <p><%= user.name %> </p>
-              <p> User_id: <%= user.id %>
-                  Card_id: <%= user.card_id %>
-                  Membership_id: <%= user.membership_id %> </p>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <h1>New card</h1>
+
+        <!-- TODO: SHOW NEW CARD ID> -->
+        <p class="title is-4"> <%= @card.id  %></p>
+
+        <%= bootstrap_form_with(model: @card, url: api_v1_cards_path, label_errors: true, inline_errors: true) do |f| %>
+            <%= f.alert_message "Please fix the errors below." %>
+            <%= f.form_group :status, label: {text: "Choose status"}, layout: :inline do %>
+                <%= f.errors_on :status %>
+                <%= f.radio_button :status, "ACTIVE", label: "ACTIVE", required: true %>
+                <%= f.radio_button :status, "INACTIVE", label: "INACTIVE", required: true %>
+                <% end %>
+            <%= f.select :user_id, options_for_select(User.all.collect { |user| [user.name, user.id] }, {include_blank: false, required: true}) %>
+            <%= f.submit "Add new card" %>
+        <% end %>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

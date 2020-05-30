@@ -3,31 +3,36 @@ module Api
         class LockersController < ApplicationController
             def index
                 respond_to do |format|
-                    format.html
-                    lockers = Locker.order('is_free DESC');
+                    @lockers = Locker.order('is_free DESC');
 
-                    format.json {render json: {status: 'SUCCESS', message: 'Loaded lockers', data:lockers}, status: :ok}
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded lockers', data:@lockers}, status: :ok}
+                    format.html
                 end
             end
 
             def show
                 respond_to do |format|
-                    format.html
-                    locker = Locker.find(params[:id]);
+                    @locker = Locker.find(params[:id]);
                 
-                    format.json {render json: {status: 'SUCCESS', message: 'Loaded locker', data:locker}, status: :ok}
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded locker', data:@locker}, status: :ok}
+                    format.html
                 end
+            end
+
+            def new
+                @locker = Locker.new
             end
 
             def create
                 respond_to do |format|
-                    format.html
-                    locker = Locker.new(locker_params)
+                    @locker = Locker.new(locker_params)
 
-                    if locker.save
-                        format.json {render json: {status: 'SUCCESS', message: 'Saved new locker', data:locker}, status: :ok}
+                    if @locker.save
+                        format.json {render json: {status: 'SUCCESS', message: 'Saved new locker', data:@locker}, status: :ok}
+                        format.html {redirect_to api_v1_lockers_path}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'Locker not added', data:locker.errors}, status: :unprocessable_entity}
+                        format.json {render json: {status: 'ERROR', message: 'Locker not added', data:@locker.errors}, status: :unprocessable_entity}
+                        format.html {render 'new'}
                     end
                 end
             end
@@ -62,7 +67,7 @@ module Api
             private
 
             def locker_params
-                params.permit(:card_id, :is_free, :room)
+                params.require(:locker).permit(:is_free, :room, :card_id)
             end
         end
     end

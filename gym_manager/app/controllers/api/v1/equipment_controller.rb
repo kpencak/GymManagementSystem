@@ -3,31 +3,36 @@ module Api
         class EquipmentController < ApplicationController
             def index
                 respond_to do |format|
-                    format.html
-                    equipment = Equipment.order('is_free DESC');
+                    @equipment = Equipment.order('is_free DESC');
 
-                    format.json {render json: {status: 'SUCCESS', message: 'Loaded equipment', data:equipment}, status: :ok}
+                    format.json { render json: { status: 'SUCCESS', message: 'Loaded equipment', data:@equipment }, status: :ok}
+                    format.html
                 end
             end
 
             def show
                 respond_to do |format|
-                    format.html
-                    equipment = Equipment.find(params[:id]);
+                    @equipment = Equipment.find(params[:id]);
                 
-                    format.json {render json: {status: 'SUCCESS', message: 'Loaded equipment', data:equipment}, status: :ok}
+                    format.json {render json: { status: 'SUCCESS', message: 'Loaded equipment', data:@equipment }, status: :ok }
+                    format.html
                 end
+            end
+
+            def new
+                @equipment = Equipment.new 
             end
 
             def create
                 respond_to do |format|
-                    format.html
-                    equipment = Equipment.new(equipment_params)
+                    @equipment = Equipment.new(equipment_params)
 
-                    if equipment.save
-                        format.json {render json: {status: 'SUCCESS', message: 'Added new equipment', data:equipment}, status: :ok}
+                    if @equipment.save
+                        format.json {render json: {status: 'SUCCESS', message: 'Added new equipment', data:@equipment}, status: :ok}
+                        format.html {redirect_to api_v1_equipment_index_path}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'New equipment not added', data:equipment.errors}, status: :unprocessable_entity}
+                        format.json {render json: {status: 'ERROR', message: 'New equipment not added', data:@equipment.errors}, status: :unprocessable_entity}
+                        format.html {render 'new'}
                     end
                 end
             end

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>New locker</title>
+  </head>
+  <body>
+    <div class="container-sm">
+        <h1>New locker</h1>
+
+        <!-- TODO: SHOW NEW CARD ID> -->
+        <p class="title is-4"> <%= @locker.id  %></p>
+
+        <%= bootstrap_form_with(model: @locker, url: api_v1_lockers_path, label_errors: true, inline_errors: true) do |f| %>
+            <%= f.alert_message "Please fix the errors below." %>
+            <%= f.select :card_id, options_for_select(Card.all.collect { |card| [card.id, card.user_id] }, {include_blank: false, required: true}) %>
+            <%= f.form_group :is_free, label: {text: "Choose status"}, layout: :inline do %>
+                <%= f.errors_on :is_free %>
+                <%= f.radio_button :is_free, "True", label: "FREE", required: true %>
+                <%= f.radio_button :is_free, "False", label: "OCCUPIED", required: true %>
+                <% end %>
+            <%= f.form_group :room, label: {text: "Choose locker room"}, layout: :inline do %>
+                <%= f.errors_on :room %>
+                <%= f.radio_button :room, "M", label: "Male", required: true %>
+                <%= f.radio_button :room, "F", label: "Female", required: true %>
+                <% end %>
+            <%= f.submit "Add new locker" %>
+        <% end %>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

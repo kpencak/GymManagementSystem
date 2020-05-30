@@ -3,31 +3,36 @@ module Api
         class MembershipsController < ApplicationController
             def index
                 respond_to do |format|
-                    format.html
-                    memberships = Membership.order('id DESC');
+                    @memberships = Membership.order('id DESC');
 
-                    format.json {render json: {status: 'SUCCESS', message: 'Loaded memberships', data:memberships}, status: :ok}
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded memberships', data:@memberships}, status: :ok}
+                    format.html
                 end
             end
 
             def show
                 respond_to do |format|
-                    format.html
-                    membership = Membership.find(params[:id]);
+                    @membership = Membership.find(params[:id]);
                 
-                    format.json {render json: {status: 'SUCCESS', message: 'Loaded membership', data:membership}, status: :ok}
+                    format.json {render json: {status: 'SUCCESS', message: 'Loaded membership', data:@membership}, status: :ok}
+                    format.html
                 end
+            end
+
+            def new
+                @membership = Membership.new
             end
 
             def create
                 respond_to do |format|
-                    format.html
-                    membership = Membership.new(membership_params)
+                    @membership = Membership.new(membership_params)
 
-                    if membership.save
-                        format.json {render json: {status: 'SUCCESS', message: 'Added new membership', data:membership}, status: :ok}
+                    if @membership.save
+                        format.json {render json: {status: 'SUCCESS', message: 'Added new membership', data:@membership}, status: :ok}
+                        format.html {redirect_to api_v1_memberships_path}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'Membership not saved', data:membership.errors}, status: :unprocessable_entity}
+                        format.json {render json: {status: 'ERROR', message: 'Membership not saved', data:@membership.errors}, status: :unprocessable_entity}
+                        format.html {render 'new'}
                     end
                 end
             end
