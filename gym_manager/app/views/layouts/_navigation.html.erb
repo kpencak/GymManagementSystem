@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
+    <div class="container">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
+        </button> <%= link_to "Home", root_path, class: 'navbar-brand' %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav mr-auto">
+            <li class='nav-item'><%= link_to 'Users', api_v1_users_url, class: 'nav-link' %></li>  
+            <li class='nav-item'><%= link_to 'Cards', api_v1_cards_url, class: 'nav-link' %></li>
+            <li class='nav-item'><%= link_to 'Lockers', api_v1_lockers_url, class: 'nav-link' %></li>
+            <li class='nav-item'><%= link_to 'Memberships', api_v1_memberships_url, class: 'nav-link' %></li> 
+            <li class='nav-item'><%= link_to 'Equipment', api_v1_equipment_index_url, class: 'nav-link' %></li>   
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
