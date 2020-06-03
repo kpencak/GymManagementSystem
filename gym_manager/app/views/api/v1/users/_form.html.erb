@@ -1,0 +1,10 @@
+<%= f.alert_message "Please fix the errors below." %>
+<%= f.errors_on :name, :surname %>
+<%= f.text_field :name, label: "First Name", required: true %>
+<%= f.text_field :surname, label: "Last Name", required: true %>
+<%= f.form_group :sex, label: {text: "Choose sex"}, layout: :inline do %>
+    <%= f.errors_on :sex %>
+    <%= f.radio_button :sex, "M", label: "M ", required: true %>
+    <%= f.radio_button :sex, "F", label: "F ", required: true %>
+    <% end %>
+<%= f.submit %>

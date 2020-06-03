@@ -54,20 +54,25 @@ module Api
                 respond_to do |format|
                     @card = Card.find(params[:id]);
 
-                    if @card.update_attributes(card_params)
+                    if @card.update(card_params)
                         format.json {render json: {status: 'SUCCESS', message: 'Updated card', data:@card}, status: :ok}
+                        format.html {redirect_to api_v1_card_path(@card)}
                     else
                         format.json {render json: {status: 'ERROR', message: 'Card not updated', data:@card.errors}, status: :unprocessable_entity}
+                        format.html {render 'edit'}
                     end
                     format.html
                 end
             end
 
+            def edit
+                @card = Card.find(params[:id]);
+            end
 
             private
 
             def card_params
-                params.require(:card).permit(:status, :user_id)
+                params.require(:card).permit(:status, :user_id, :locker_id, :membership_id)
             end
         end
     end

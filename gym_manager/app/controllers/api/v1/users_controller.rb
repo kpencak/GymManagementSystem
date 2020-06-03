@@ -25,7 +25,6 @@ module Api
 
             def create
                 respond_to do |format|
-                    
                     @user = User.new(user_params)
 
                     if @user.save 
@@ -54,14 +53,19 @@ module Api
             def update
                 respond_to do |format|
                     @user = User.find(params[:id]);
-
-                    if @user.update_attributes(user_params)
+                
+                    if @user.update(user_params)
                         format.json {render json: {status: 'SUCCESS', message: 'Updated user', data:@user}, status: :ok}
+                        format.html {redirect_to api_v1_user_path(@user)}
                     else
                         format.json {render json: {status: 'ERROR', message: 'User not updated', data:@user.errors}, status: :unprocessable_entity}
+                        format.html {render 'edit'}
                     end
-                    format.html
                 end
+            end
+
+            def edit
+                @user = User.find(params[:id]);
             end
 
 

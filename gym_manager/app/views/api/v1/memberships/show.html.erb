@@ -13,7 +13,29 @@
   <body>
     <div class="container-sm">
         <h1>Membership no. <%= @membership.id %></h1>
+        <div class="container">
+          <div class="row">
+            <!-- Left side -->
+            <div class="col-8">
+              <p>User: <%= @membership.user_id %></p>
+              <p>Status: <%= @membership.status %></p>
+              <p>Card: <%= @membership.card_id %></p>
+            </div>
 
+            <!-- Right side -->
+            <div class="col-4">
+              <div class=btn-group-vertical>
+                <button type="button" class="btn btn-outline-primary">
+                  <%= link_to "Edit", edit_api_v1_membership_path(@membership) %>
+                </button>
+                <button type="button" class="btn btn-outline-danger">
+                  <!-- TODO: Add delete -->
+                  <%= link_to "Delete",  api_v1_membership_path(@membership) %>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

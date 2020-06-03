@@ -16,7 +16,7 @@
           <div class="card-content">
             <div class="media">
               <div class="media-content">
-                <h4 class="title is-4"> Equipment id: <%= equip.id %></h4>
+                <h4 class="title is-4"> Equipment id: <%= link_to equip.id, api_v1_equipment_path(equip)%></h4>
               </div>
             </div>
             <div class="content">

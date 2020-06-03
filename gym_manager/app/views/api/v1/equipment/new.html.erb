@@ -17,15 +17,9 @@
         <!-- TODO: SHOW NEW CARD ID> -->
         <p class="title is-4"> <%= @equipment.id  %></p>
 
-        <%= bootstrap_form_with(model: @equipment, url: api_v1_equipment_index_path, label_errors: true, inline_errors: true) do |f| %>
-            <%= f.alert_message "Please fix the errors below." %>
-            <%= f.form_group :is_free, label: {text: "Choose status"}, layout: :inline do %>
-                <%= f.errors_on :is_free %>
-                <%= f.radio_button :is_free, "True", label: "FREE", required: true %>
-                <%= f.radio_button :is_free, "False", label: "OCCUPIED", required: true %>
-                <% end %>
-            <%= f.submit "Add new equipment" %>
-        <% end %>
+        <%= bootstrap_form_with(model: @equipment, url: api_v1_equipment_index_path, label_errors: true, inline_errors: true) do |f|
+            render 'form', f: f
+        end %>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

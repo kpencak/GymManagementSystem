@@ -16,7 +16,7 @@
           <div class="card-content">
             <div class="media">
               <div class="media-content">
-                <h4 class="title is-4"> Card id: <%= card.id %></h4>
+                <h4 class="title is-4"> Card id: <%= link_to card.id, api_v1_card_path(card) %></h4>
               </div>
             </div>
             <div class="content">

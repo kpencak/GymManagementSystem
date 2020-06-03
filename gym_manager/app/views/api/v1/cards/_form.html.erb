@@ -1,0 +1,9 @@
+<%= f.alert_message "Please fix the errors below." %>
+<%= f.form_group :status, label: {text: "Choose status"}, layout: :inline do %>
+    <%= f.errors_on :status %>
+    <%= f.radio_button :status, "ACTIVE", label: "ACTIVE", required: true %>
+    <%= f.radio_button :status, "INACTIVE", label: "INACTIVE", required: true %>
+    <% end %>
+<%= f.select :user_id, options_for_select(User.all.collect { |user| [user.name, user.id] }, {include_blank: false, required: true}) %>
+<%= f.select :locker_id, options_for_select(Locker.all.collect { |locker| [locker.id] }, {include_blank: true, required: false}) %>
+<%= f.submit %>

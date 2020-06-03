@@ -52,22 +52,27 @@ module Api
 
             def update
                 respond_to do |format|
-                    format.html
-                    membership = Membership.find(params[:id]);
+                    @membership = Membership.find(params[:id]);
 
-                    if Membership.update_attributes(membership_params)
-                        format.json {render json: {status: 'SUCCESS', message: 'Updated membership info', data:membership}, status: :ok}
+                    if Membership.update(membership_params)
+                        format.json {render json: {status: 'SUCCESS', message: 'Updated membership info', data:@membership}, status: :ok}
+                        format.html {redirect_to api_v1_membership_path(@membership)}
                     else
-                        foramt.json {render json: {status: 'ERROR', message: 'Membership not updated', data:membership.errors}, status: :unprocessable_entity}
+                        format.json {render json: {status: 'ERROR', message: 'Membership not updated', data:@membership.errors}, status: :unprocessable_entity}
+                        format.html {render 'edit'}
                     end
                 end
+            end
+
+            def edit
+                @membership = Membership.find(params[:id]);
             end
 
 
             private
 
             def membership_params
-                params.permit(:user_id, :card_id, :status)
+                params.require(:membership).permit(:user_id, :card_id, :status)
             end
         end
     end

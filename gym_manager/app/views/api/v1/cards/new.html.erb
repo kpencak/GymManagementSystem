@@ -17,16 +17,9 @@
         <!-- TODO: SHOW NEW CARD ID> -->
         <p class="title is-4"> <%= @card.id  %></p>
 
-        <%= bootstrap_form_with(model: @card, url: api_v1_cards_path, label_errors: true, inline_errors: true) do |f| %>
-            <%= f.alert_message "Please fix the errors below." %>
-            <%= f.form_group :status, label: {text: "Choose status"}, layout: :inline do %>
-                <%= f.errors_on :status %>
-                <%= f.radio_button :status, "ACTIVE", label: "ACTIVE", required: true %>
-                <%= f.radio_button :status, "INACTIVE", label: "INACTIVE", required: true %>
-                <% end %>
-            <%= f.select :user_id, options_for_select(User.all.collect { |user| [user.name, user.id] }, {include_blank: false, required: true}) %>
-            <%= f.submit "Add new card" %>
-        <% end %>
+        <%= bootstrap_form_with(model: @card, url: api_v1_cards_path, label_errors: true, inline_errors: true) do |f|
+            render 'form', f: f
+        end %>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

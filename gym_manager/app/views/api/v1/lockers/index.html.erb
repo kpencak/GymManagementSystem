@@ -16,7 +16,7 @@
           <div class="card-content">
             <div class="media">
               <div class="media-content">
-                <h4 class="title is-4"> Locker id: <%= locker.id %></h4>
+                <h4 class="title is-4"> Locker id: <%= link_to locker.id, api_v1_locker_path(locker) %></h4>
               </div>
             </div>
             <div class="content">

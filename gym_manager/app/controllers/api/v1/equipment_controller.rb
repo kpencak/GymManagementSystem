@@ -52,22 +52,27 @@ module Api
 
             def update
                 respond_to do |format|
-                    format.html
-                    equipment = Equipment.find(params[:id]);
+                    @equipment = Equipment.find(params[:id]);
 
-                    if equipment.update_attributes(equipment_params)
-                        format.json {render json: {status: 'SUCCESS', message: 'Updated equipment properies', data:equipment}, status: :ok}
+                    if @equipment.update(equipment_params)
+                        format.json {render json: {status: 'SUCCESS', message: 'Updated equipment properies', data:@equipment}, status: :ok}
+                        format.html {redirect_to api_v1_equipment_path(@equipment)}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'Equipment properties not updated', data:equipment.errors}, status: :unprocessable_entity}
+                        format.json {render json: {status: 'ERROR', message: 'Equipment properties not updated', data:@equipment.errors}, status: :unprocessable_entity}
+                        format.html {render 'edit'}
                     end
                 end
+            end
+
+            def edit
+                @equipment = Equipment.find(params[:id]);
             end
 
 
             private
 
             def equipment_params
-                params.permit(:card_id, :start_reservation_time, :end_reservation_time, :is_free)
+                params.require(:equipment).permit(:card_id, :start_reservation_time, :end_reservation_time, :is_free)
             end
         end
     end

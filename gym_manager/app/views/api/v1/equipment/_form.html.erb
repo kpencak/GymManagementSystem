@@ -1,0 +1,7 @@
+<%= f.alert_message "Please fix the errors below." %>
+<%= f.form_group :is_free, label: {text: "Choose status"}, layout: :inline do %>
+    <%= f.errors_on :is_free %>
+    <%= f.radio_button :is_free, "True", label: "FREE", required: true %>
+    <%= f.radio_button :is_free, "False", label: "OCCUPIED", required: true %>
+    <% end %>
+<%= f.submit %>

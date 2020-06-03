@@ -52,15 +52,20 @@ module Api
 
             def update
                 respond_to do |format|
-                    format.html
-                    locker = Locker.find(params[:id]);
+                    @locker = Locker.find(params[:id]);
 
-                    if locker.update_attributes(locker_params)
-                        format.json {render json: {status: 'SUCCESS', message: 'Updated locker properties', data:locker}, status: :ok}
+                    if @locker.update(locker_params)
+                        format.json {render json: {status: 'SUCCESS', message: 'Updated locker properties', data:@locker}, status: :ok}
+                        format.html {redirect_to api_v1_locker_path(@locker)}
                     else
-                        format.json {render json: {status: 'ERROR', message: "Locker's properties not updated", data:locker.errors}, status: :unprocessable_entity}
+                        format.json {render json: {status: 'ERROR', message: "Locker's properties not updated", data:@locker.errors}, status: :unprocessable_entity}
+                        format.html {render 'edit'}
                     end
                 end
+            end
+
+            def edit
+                @locker = Locker.find(params[:id]);
             end
 
 
