@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+@import url('http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
 $white: white;
 $black: black;
@@ -26,11 +27,8 @@ a:visited {
         color: $black;
 }
 .jumbotron {
-
-        background-image: url(('/gym_manager/app/assets/images/cool-background.png'));
-
+        background-image: url('/gym_manager/app/assets/images/cool-background.png');
         background-size: cover;      
-        color: $white;
         text-align: center;
         p {
                 color: $white;
