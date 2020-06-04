@@ -3,6 +3,7 @@
 
 $white: white;
 $black: black;
+$test: green;
 
 .navbar {
         margin-bottom: 0;
@@ -25,7 +26,10 @@ a:visited {
         color: $black;
 }
 .jumbotron {
-        background: #0048CD;
+
+        background-image: url(('/gym_manager/app/assets/images/cool-background.png'));
+
+        background-size: cover;      
         color: $white;
         text-align: center;
         p {
