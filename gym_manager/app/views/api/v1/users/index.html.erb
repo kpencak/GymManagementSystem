@@ -10,7 +10,7 @@
 
     <title>USERS LIST</title>
   </head>
-  <body>
+  <body class="users">
     <div class="container-sm">
       <h1>USERS LIST</h1>
       <% @users.each do |user| %>
@@ -30,6 +30,9 @@
           </div>
         </div>
       <% end %>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+      <%= link_to "Create new user", new_api_v1_user_path(@user) %>
+      </button>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

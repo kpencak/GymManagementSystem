@@ -4,20 +4,25 @@
 
 $white: white;
 $black: black;
-$test: green;
+$test: #1a237e;
 
 .navbar {
         margin-bottom: 0;
         background: $black;
 }
 footer {
+        background: $black;
   
 }
-
 body {
         background: $black;
         color: $white;
         font-family: 'Merriweather', sans-serif;
+        &.users{background: $test;}
+        &.cards{background: $test;}
+        &.lockers{background: $test;}
+        &.equipment{background: $test;}
+        &.memberships{background: $test;}
 }
 h1,
 h2 {

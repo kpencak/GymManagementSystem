@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
-  <body>
+  <body class="memberships">
     <div class="container-sm">
       <h1>Memberhips LIST</h1>
       <% @memberships.each do |membership| %>
@@ -27,6 +27,9 @@
           </div>
         </div>
       <% end %>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+      <%= link_to "Create new membership", new_api_v1_user_path(@user) %>
+      </button>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
