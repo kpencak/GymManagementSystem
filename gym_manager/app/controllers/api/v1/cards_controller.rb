@@ -41,10 +41,12 @@ module Api
                 respond_to do |format|
                     @card = Card.find(params[:id]);
 
-                    if @card.destroy && @card.locker_id == null
+                    if @card.destroy
                         format.json {render json: {status: 'SUCCESS', message: 'Deleted card', data:@card}, status: :ok}
+                        format.html {redirect_to api_v1_cards_path}
                     else
                         format.json {render json: {status: 'ERROR', message: 'Card not deleted', data:@card.errors}, status: :forbidden}
+                        format.html {redirect_to api_v1_card_path(@card)}
                     end
                     format.html
                 end

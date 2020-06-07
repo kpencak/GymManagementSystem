@@ -39,13 +39,14 @@ module Api
 
             def destroy
                 respond_to do |format|
-                    format.html
-                    locker = Locker.find(params[:id]);
+                    @locker = Locker.find(params[:id]);
 
-                    if locker.destroy && locker.is_free == "TRUE"
-                        format.json {render json: {status: 'SUCCESS', message: 'Deleted locker entry', data:locker}, status: :ok}
+                    if @locker.destroy
+                        format.json {render json: {status: 'SUCCESS', message: 'Deleted locker entry', data:@locker}, status: :ok}
+                        format.html {redirect_to api_v1_lockers_path}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'Locker not deleted', data:locker.errors}, status: :forbidden}
+                        format.json {render json: {status: 'ERROR', message: 'Locker not deleted', data:@locker.errors}, status: :forbidden}
+                        format.html {redirect_to api_v1_locker_path(@locker)}
                     end
                 end
             end

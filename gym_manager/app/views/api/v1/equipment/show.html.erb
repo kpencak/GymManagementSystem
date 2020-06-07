@@ -30,8 +30,7 @@
                   <%= link_to "Edit", edit_api_v1_equipment_path(@equipment) %>
                 </button>
                 <button type="button" class="btn btn-outline-danger">
-                  <!-- TODO: Add delete -->
-                  <%= link_to "Delete",  api_v1_equipment_path(@equipment) %>
+                  <%= button_to "Delete", api_v1_equipment_url(@equipment), method: :delete, data: { confirm: 'Are you sure?' } %>
                 </button>
               </div>
             </div>

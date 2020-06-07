@@ -40,12 +40,14 @@ module Api
             def destroy
                 respond_to do |format|
                     format.html
-                    equipment = Equipment.find(params[:id]);
+                    @equipment = Equipment.find(params[:id]);
 
-                    if equipment.destroy && equipment.is_free == "TRUE"
-                        format.json {render json: {status: 'SUCCESS', message: 'Deleted equipment', data:equipment}, status: :ok}
+                    if @equipment.destroy && @equipment.is_free == "TRUE"
+                        format.json {render json: {status: 'SUCCESS', message: 'Deleted equipment', data:@equipment}, status: :ok}
+                        format.html {redirect_to api_v1_equipment_index_path}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'Equipment not deleted', data:equipment.errors}, status: :forbidden}
+                        format.json {render json: {status: 'ERROR', message: 'Equipment not deleted', data:@equipment.errors}, status: :forbidden}
+                        format.html {redirect_to api_v1_equipment_path(@equipment)}
                     end
                 end
             end

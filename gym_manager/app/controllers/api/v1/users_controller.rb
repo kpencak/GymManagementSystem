@@ -43,10 +43,11 @@ module Api
 
                     if @user.destroy
                         format.json {render json: {status: 'SUCCESS', message: 'Deleted user', data:@user}, status: :ok}
+                        format.html {redirect_to api_v1_users_path}
                     else
                         format.json {render json: {status: 'ERROR', message: 'User not deleted', data:@user.errors}, status: :forbidden}
+                        format.html {redirect_to api_v1_user_path(@user)}
                     end
-                    format.html
                 end
             end
 
@@ -56,7 +57,7 @@ module Api
                 
                     if @user.update(user_params)
                         format.json {render json: {status: 'SUCCESS', message: 'Updated user', data:@user}, status: :ok}
-                        format.html {redirect_to api_v1_user_path(@user)}
+                        format.html {redirect_to api_v1_user_url(@user)}
                     else
                         format.json {render json: {status: 'ERROR', message: 'User not updated', data:@user.errors}, status: :unprocessable_entity}
                         format.html {render 'edit'}

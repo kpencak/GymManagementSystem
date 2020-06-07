@@ -17,6 +17,7 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 //
 //= require jquery3
+//= require jquery-ujs
 //= require popper
 //= require bootstrap
 //= require rails_bootstrap_forms

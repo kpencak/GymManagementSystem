@@ -39,13 +39,14 @@ module Api
 
             def destroy
                 respond_to do |format|
-                    format.html
-                    membership = Membership.find(params[:id]);
+                    @membership = Membership.find(params[:id]);
 
-                    if membership.destroy
-                        format.json {render json: {status: 'SUCCESS', message: 'Deleted membership', data:membership}, status: :ok}
+                    if @membership.destroy
+                        format.json {render json: {status: 'SUCCESS', message: 'Deleted membership', data:@membership}, status: :ok}
+                        format.html {redirect_to api_v1_memberships_path}
                     else
-                        format.json {render json: {status: 'ERROR', message: 'Membership not deleted', data:membership.errors}, status: :forbidden}
+                        format.json {render json: {status: 'ERROR', message: 'Membership not deleted', data:@membership.errors}, status: :forbidden}
+                        format.html {redirect_to api_v1_membership_path(@membership)}
                     end
                 end
             end

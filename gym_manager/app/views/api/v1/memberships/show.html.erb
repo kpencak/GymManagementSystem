@@ -29,8 +29,7 @@
                   <%= link_to "Edit", edit_api_v1_membership_path(@membership) %>
                 </button>
                 <button type="button" class="btn btn-outline-danger">
-                  <!-- TODO: Add delete -->
-                  <%= link_to "Delete",  api_v1_membership_path(@membership) %>
+                  <%= button_to "Delete", api_v1_membership_url(@membership), method: :delete, data: { confirm: 'Are you sure?' } %>
                 </button>
               </div>
             </div>
