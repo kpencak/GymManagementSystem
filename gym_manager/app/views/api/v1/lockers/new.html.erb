@@ -20,6 +20,7 @@
         <%= bootstrap_form_with(model: @locker, url: api_v1_lockers_path, label_errors: true, inline_errors: true) do |f|
           render 'form', f: f
         end %>
+
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -28,4 +29,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>
-<%= link_to 'Back', new_api_v1_user_path, :class => "btn btn-primary btn-sm" %>
