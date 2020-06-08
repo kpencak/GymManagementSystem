@@ -10,7 +10,7 @@
  </head> 
   <body class="lockers">
     <div class="container-sm">
-      <h1>Lockers</h1>
+      <h1 class="text-light">Lockers LIST</h1>
       <% @lockers.each do |locker| %>
         <div class="card">
           <div class="card-content">
@@ -20,7 +20,7 @@
               </div>
             </div>
             <div class="content">
-              <p> Status: <%= locker.is_free %>
+              <p class="text-dark"> Status: <%= locker.is_free %>
                   Room: <%= locker.room %>
                   Card_id: <%= locker.card_id %> </p>
             </div>
@@ -28,7 +28,7 @@
         </div>
       <% end %>
       <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-      <%= link_to "Create new locker", new_api_v1_locker_path(@locker) %>
+      <%= link_to "Create new locker", new_api_v1_locker_path(@locker), class: 'text-light' %>
       </button>
     </div>
     <!-- Optional JavaScript -->
