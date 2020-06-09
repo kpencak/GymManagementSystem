@@ -14,7 +14,7 @@
     <div class="container-sm">
         <h1>Edit user info - id: <%= @user.id %></h1>
 
-        <%= bootstrap_form_with(model: @user, url: api_v1_user_path(@user), label_errors: true, inline_errors: true) do |f|
+        <%= bootstrap_form_with(model: @user, url: api_v1_user_path(@user), label_errors: true, inline_errors: true, local: true) do |f|
             render 'form', f:f
         end %>
     </div>

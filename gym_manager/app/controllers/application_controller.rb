@@ -3,3 +3,4 @@ class ApplicationController < ActionController::Base
     #added to test requests on postman
     skip_forgery_protection 
 end
+

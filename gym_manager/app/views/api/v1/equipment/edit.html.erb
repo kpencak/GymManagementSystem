@@ -14,7 +14,7 @@
     <div class="container-sm">
         <h1>Edit equipment info - id: <%= @equipment.id %></h1>
 
-        <%= bootstrap_form_with(model: @equipment, url: api_v1_equipment_path(@equipment), label_errors: true, inline_errors: true) do |f|
+        <%= bootstrap_form_with(model: @equipment, url: api_v1_equipment_path(@equipment), label_errors: true, inline_errors: true, local: true) do |f|
             render 'form', f:f
         end %>
     </div>

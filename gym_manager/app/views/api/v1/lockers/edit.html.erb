@@ -14,7 +14,7 @@
     <div class="container-sm">
         <h1>Edit locker info - id: <%= @locker.id %></h1>
 
-        <%= bootstrap_form_with(model: @locker, url: api_v1_locker_path(@locker), label_errors: true, inline_errors: true) do |f|
+        <%= bootstrap_form_with(model: @locker, url: api_v1_locker_path(@locker), label_errors: true, inline_errors: true, local: true) do |f|
             render 'form', f:f
         end %>
     </div>

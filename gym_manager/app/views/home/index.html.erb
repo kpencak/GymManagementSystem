@@ -3,9 +3,15 @@
         <h1>Are you ready to be fit?</h1>
         <p>Join us!</p>
         <br>
-        <p>
-            <%= button_to 'Sign into your account', api_v1_users_path, :method => :get,  :class => "btn btn-primary btn-lg"%>
-        </p>
+          <% if admin_signed_in? %>
+            <p>
+              <%= button_to "Logout", destroy_admin_session_path, method: :delete, :class => "btn btn-primary" %>
+            </p>
+          <% else %>  
+            <p class="control">
+              <%= button_to 'Sign into your account', new_admin_session_path, :method => :get,  :class => "btn btn-primary btn-lg"%>
+          </p>
+          <% end %>   
     </div>
 </div>
 <div class="container">
