@@ -10,9 +10,9 @@
 
     <title>USERS LIST</title>
   </head>
-  <body>
+  <body class="users">
     <div class="container-sm">
-      <h1>USERS LIST</h1>
+      <h1 class="text-light">Users LIST</h1>
       <% @users.each do |user| %>
         <div class="card">
           <div class="card-content">
@@ -22,14 +22,16 @@
               </div>
             </div>
             <div class="content">
-              <p><%= user.name %> </p>
-              <p> User_id: <%= user.id %>
-                  Card_id: <%= user.card_id %>
-                  Membership_id: <%= user.membership_id %> </p>
+              <p class="text-dark"><%= user.name %> </p>
+              <p class="text-dark"> User_id: <%= user.id %>
+                </p>
             </div>
           </div>
         </div>
       <% end %>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+      <%= link_to "Create new user", new_api_v1_user_path(@user), class: 'text-light' %>
+      </button>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

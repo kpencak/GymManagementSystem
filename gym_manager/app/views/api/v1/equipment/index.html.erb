@@ -8,9 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
-  <body>
+  <body class="equipment">
     <div class="container-sm">
-      <h1>Equipment LIST</h1>
+      <h1 class="text-light">Equipment LIST</h1>
       <% @equipment.each do |equip| %>
         <div class="card">
           <div class="card-content">
@@ -20,14 +20,15 @@
               </div>
             </div>
             <div class="content">
-              <p> Status: <%= equip.is_free %>
-                  Card_id: <%= equip.card_id %>
-                  Start time: <%= equip.start_reservation_time %>
-                  End time: <%= equip.end_reservation_time %> </p>
+              <p class="text-dark"> Status: <%= equip.is_free %>
+                   </p>
             </div>
           </div>
         </div>
       <% end %>
+      <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+      <%=link_to "Add new equipment", new_api_v1_equipment_path(@equipment), class: 'text-light'%>
+      </button>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

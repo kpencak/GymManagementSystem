@@ -17,21 +17,17 @@
           <div class="row">
             <!-- Left side -->
             <div class="col-8">
-              <p>Name: <%= @user.name %></p>
-                <p>Surname: <%= @user.surname %> </p>
-                <p>Sex: <%= @user.sex %></p>
+              <p class="text-dark">Name: <%= @user.name %></p>
+                <p class="text-dark">Surname: <%= @user.surname %> </p>
+                <p class="text-dark">Sex: <%= @user.sex %></p>
             </div>
 
             <!-- Right side -->
             <div class="col-4">
               <div class=btn-group-vertical>
-                <button type="button" class="btn btn-outline-primary">
-                  <%= link_to "Edit", edit_api_v1_user_path(@user) %>
-                </button>
-                <button type="button" class="btn btn-outline-danger">
-                  <!-- TODO: Add delete -->
-                  <%= button_to "Delete", api_v1_user_url(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </button>
+                <%= link_to "Edit", edit_api_v1_user_path(@user), :class => "btn btn-secondary"  %>
+                  <%= button_to "Delete", api_v1_user_url(@user), :class => "btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to 'Back', api_v1_users_path, :class => "btn btn-info" %>
               </div>
             </div>
           </div>

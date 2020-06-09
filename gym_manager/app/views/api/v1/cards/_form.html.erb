@@ -7,3 +7,4 @@
 <%= f.select :user_id, options_for_select(User.all.collect { |user| [user.name, user.id] }, {include_blank: false, required: true}) %>
 <%= f.select :locker_id, options_for_select(Locker.all.collect { |locker| [locker.id] }, {include_blank: true, required: false}) %>
 <%= f.submit %>
+<%= link_to 'Back', api_v1_cards_path, :class => "btn btn-info" %>

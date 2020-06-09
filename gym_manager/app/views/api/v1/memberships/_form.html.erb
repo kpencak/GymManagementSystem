@@ -7,3 +7,4 @@
 <%= f.select :card_id, options_for_select(Card.all.collect { |card| [card.id, card.user_id] }, {include_blank: false, required: true}) %>
 <%= f.select :user_id, options_for_select(User.all.collect { |user| [user.name, user.id] }, {include_blank: false, required: true}) %>
 <%= f.submit %>
+<%= link_to 'Back', api_v1_memberships_path, :class => "btn btn-info" %>
