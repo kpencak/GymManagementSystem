@@ -1,0 +1,70 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+@import url('http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+$white: white;
+$black: black;
+$test: #1a237e;
+
+.navbar {
+        margin-bottom: 0;
+        background: $black;
+}
+footer {
+        background: $black;
+        
+  
+}
+body {
+        background: $black;
+        color: $white;
+        font-family: 'Merriweather', sans-serif;
+        &.users{background: $test;}
+        &.cards{background: $test;}
+        &.lockers{background: $test;}
+        &.equipment{background: $test;}
+        &.memberships{background: $test;}
+}
+h1,
+h2 {
+        font-weight: bold;
+}
+p {
+        font-size: 16px;
+        color: $white;
+}
+a:visited {
+        color: $black;
+}
+.jumbotron {
+        background-image: url('https://pics.tinypic.pl/i/01007/hf1r6kkgvyqd.png');
+        text-align: center;
+        p {
+                color: $white;
+                font-size: 26px;
+        }
+}
+.link {
+        color: $white;
+}
+.btn-primary {
+        color: $white;
+        border-color: $white;
+        margin-bottom: 5px;
+}
+.btn-sm {
+        background-color: $white;
+        display: inline-block;
+}
+img,
+video,
+audio {
+        margin-top: 20px;
+        max-width: 80%;
+}
+caption {
+
+        float: left;
+        clear: both;
+
+}

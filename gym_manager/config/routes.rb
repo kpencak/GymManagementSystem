@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
+  get 'home/index'
+  root 'home#index'
   namespace 'api' do
     namespace 'v1' do
       resources :users
